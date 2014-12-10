@@ -45,19 +45,27 @@ class MyAPI extends API
      */
      protected function users() {
         if ($this->method == 'GET') {
-				$users = array();
-          		$stmt = $this->conn->prepare("SELECT * FROM users"); 
-				$stmt->execute();
+			$users = array();
+			$id = 0;
+			if (array_key_exists(0, $this->args) && is_numeric($this->args[0])) {
+				$stmt = $this->conn->prepare("SELECT * FROM users where id=:id");
+				$stmt->bindParam( ':id', $id );
+				$id = $this->args[0];
+			}else{
+				$stmt = $this->conn->prepare("SELECT * FROM users"); 
+			}
+			$stmt->execute();
 
-					// set the resulting array to associative
-					$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+			// set the resulting array to associative
+			$result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
 
-   				foreach(new RecursiveArrayIterator($stmt->fetchAll()) as $k=>$v) { 
-						echo $users[] = $v;
-					} 
+			foreach(new RecursiveArrayIterator($stmt->fetchAll()) as $k=>$v) { 
+				echo $users[] = $v;
+			} 
 			
           return $users;
-          //     return "Your name is " . $this->User->name;
+		} elseif ($this->method == 'POST'){
+			return "Adding user is not implemented yet.";
         } else {
             return "Only accepts GET requests";
         }
