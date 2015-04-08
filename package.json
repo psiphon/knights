@@ -1,0 +1,38 @@
+{
+  "name": "knights",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "connect": "~2.12.0",
+    "connect-livereload": "~0.3.2",
+    "del": "^1.1.1",
+    "gulp": "~3.2.4",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-cache": "^0.2.8",
+    "gulp-concat": "^2.5.2",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-jshint": "^1.10.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-minify-css": "^1.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^1.0.1",
+    "gulp-uglify": "^1.1.0",
+    "tiny-lr": "0.0.5"
+  },
+  "description": "knights\r =======",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/psiphon/knights.git"
+  },
+  "author": "psiphon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psiphon/knights/issues"
+  },
+  "homepage": "https://github.com/psiphon/knights"
+}
