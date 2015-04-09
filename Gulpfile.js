@@ -43,7 +43,7 @@ gulp.task('scripts', function() {
 // Images
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
-    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true, multipass: true })))
     .pipe(gulp.dest('dist/images'))
     .pipe(notify({ message: 'Images task complete' }));
 });
@@ -55,16 +55,15 @@ gulp.task('deps', function() {
     .pipe(concat('deps.js'))
     .pipe(gulp.dest('dist/js/'));
 });
- 
-// Clean
-gulp.task('clean', function(cb) {
-    del(['dist/css', 'dist/js', 'dist/img'], cb)
+
+gulp.task('static', function(){
+	return gulp.src('src/**/*.html')
+		.pipe(gulp.dest('dist/')); 
 });
+
  
 // Default task
-gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images', 'deps');
-});
+gulp.task('default', ['styles', 'scripts', 'images', 'deps', 'static', 'watch']);
  
 // Watch
 gulp.task('watch', function() {
@@ -77,5 +76,8 @@ gulp.task('watch', function() {
  
   // Watch image files
   gulp.watch('src/images/**/*', ['images']);
+  
+  // Watch image files
+  gulp.watch('src/**/*.html', ['static']);
   
 });
